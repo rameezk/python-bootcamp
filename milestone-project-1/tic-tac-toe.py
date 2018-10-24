@@ -49,11 +49,33 @@ def togglePlayer(currentPlayer, players):
     else:
         return players["1"]
 
+def checkForWinner(board, players):
+    #check horizontals
+    for row in board:
+        rowString = "".join(row)
+        if rowString == "XXX" or rowString == "OOO":
+            return True
+
+    #check verticals
+    for i in range(num_cols):
+        colString = "".join([row[i] for row in board])
+        if colString == 'XXX' or colString == 'OOO':
+            return True
+
+    #check diagonals
+    diag1Str = "".join([board[0][0], board[1][1], board[2][2]])
+    diag2Str = "".join([board[2][0], board[1][1], board[0][2]])
+    if diag1Str == "XXX" or diag1Str == "OOO":
+        return True
+    if diag2Str == "XXX" or diag2Str == "OOO":
+        return True
+
+    return False
+
+
 
 # Main
 players = setupPlayers()
-print(players["1"])
-print(players["2"])
 
 turn_counter = 0
 max_turns = num_cols * num_rows
@@ -65,11 +87,14 @@ while turn_counter < max_turns:
     print("Choose grid number:")
     selectedGridNumber = input('--> ')
 
-    print(selectedGridNumber)
-
     playTurn(current_player, selectedGridNumber, board)
 
     printBoard(board)
+
+    if checkForWinner(board, players):
+        print("Winner!!!")
+        break
+
     current_player = togglePlayer(current_player, players)
 
     print("")
