@@ -19,11 +19,12 @@ class Cat(Animal):
 
 dog = Dog()
 cat = Cat()
+generic = Animal()
 
 def pet_speak(pet):
     print(type(pet))
     pet.speak()
 
-for pet in [dog, cat]:
+for pet in [dog, cat, generic]:
     pet_speak(pet)
 
