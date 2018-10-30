@@ -1,6 +1,6 @@
 class Animal():
     def speak(self):
-        raise NotImplementedError
+        raise NotImplementedError("Sub-class should implement this method")
 
 class Dog(Animal):
     def __init__(self):
