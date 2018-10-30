@@ -27,3 +27,6 @@ cat = Cat()
 cat.what_am_i()
 cat.speak()
 
+for pet in [dog, cat]:
+    pet.speak()
+
